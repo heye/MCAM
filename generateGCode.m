@@ -106,14 +106,14 @@ GCode=[];
             G(i)=waterlineLayer(G(i),options);
             
             %cutter zum startpunkt fahren
-            GCodeData.data(end+1,:)=[G(i).data(1,1:2),options.ZTravel];
+            GCodeData.data(end+1,:)=[G(i).data(1,1:2),options.ZTravel, 0];
             %graph anh?ngen
             GCodeData.data(end+1:end+size(G(i).data,1),:)=G(i).data;
             %Cutter anheben
-            GCodeData.data(end+1,:)=[GCodeData.data(end,1:2),options.ZTravel];
+            GCodeData.data(end+1,:)=[GCodeData.data(end,1:2),options.ZTravel,0];
         end
         %verschieben
-        GCodeData.data=GCodeData.data+[zeros(size(GCodeData.data,1),2),-maxZ*ones(size(GCodeData.data,1),1)];
+        GCodeData.data(:,3)=GCodeData.data(:,3)-maxZ*ones(size(GCodeData.data,1),1);
         
 %         fprintf('press any key to continue..');
 %         pause

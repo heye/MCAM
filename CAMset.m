@@ -18,15 +18,19 @@ function options = CAMset(varargin)
 
 % Print out possible values of properties.
 if (nargin == 0) && (nargout == 0)
-  fprintf('          AbsTol:    [ positive scalar or vector {1e-6} ]\n');
-  fprintf('          CutterDia: [ positive scalar ]\n');
-  fprintf('          Finish:    [ Waterline, ParallelX, ParallelY, Cross ]\n');
-  fprintf('          ClearArea: [ 0|1 ]\n');
-  fprintf('          ZSpacing:  [ positive scalar ]\n');
-  fprintf('          MagicZ:    [ 0|1 ]\n');
-  fprintf('          verbose:   [ 0|1 ]\n');
-  fprintf('          conventional:   [ 0|1 ]\n');
-  fprintf('          ZTravel:   [ 0|1 ]\n');
+  fprintf('          AbsTol:        [ positive scalar or vector {1e-6} ]\n');
+  fprintf('          CutterDia:     [ positive scalar ]\n');
+  fprintf('          Finish:        [ Waterline, ParallelX, ParallelY, Cross ]\n');
+  fprintf('          ClearArea:     [ 0|1 ]\n');
+  fprintf('          ZSpacing:      [ positive scalar ]\n');
+  fprintf('          MagicZ:        [ 0|1 ]\n');
+  fprintf('          verbose:       [ 0|1 ]\n');
+  fprintf('          conventional:  [ 0|1 ]\n');
+  fprintf('          ZTravel:       [ 0|1 ]\n');
+  fprintf('          FeedZTravel:   [ positive scalar ]\n');
+  fprintf('          FeedXYTravel:  [ positive scalar ]\n');
+  fprintf('          FeedZ:         [ positive scalar ]\n');
+  fprintf('          FeedXY:        [ positive scalar ]\n');
   fprintf('\n');
   return;
 end
@@ -41,6 +45,10 @@ Names = [
     'verbose         '  
     'conventional    '  
     'ZTravel         '  
+    'FeedZTravel     '
+    'FeedXYTravel    '
+    'FeedZ           '
+    'FeedXY          '
     ];
 m = size(Names,1);
 names = lower(Names);

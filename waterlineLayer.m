@@ -142,7 +142,7 @@ function [ Gout ] = waterlineLayer( G, options )
             end
         end
         
-        GParallel=mergeParallelPaths(clearAreaGraph,ZTravel,options.CutterDia);
+        GParallel=mergeParallelPaths(clearAreaGraph,ZTravel,options);
         
         
         Gout.data(end+1:end+size(GParallel.data,1),:)=GParallel.data;
@@ -169,14 +169,14 @@ function [ Gout ] = waterlineLayer( G, options )
 %     axis equal
     
     for i=1:length(Gf.children)
-        %cutter zum startpunkt fahren
-        Gout.data(end+1,:)=[Gf.children(i).data(1,1:2),ZTravel];
+        %cutter zum startpunkt fahren, last 0 means it's a G0 command
+        Gout.data(end+1,:)=[Gf.children(i).data(1,1:2),ZTravel,0];
         
         %graph anh?ngen
-        Gout.data(end+1:end+size(Gf.children(i).data,1),:)=Gf.children(i).data;
+        Gout.data(end+1:end+size(Gf.children(i).data,1),:)=[Gf.children(i).data, ones(size(Gf.children(i).data,1),1)];
         
         %Cutter anheben
-        Gout.data(end+1,:)=[Gout.data(end,1:2),ZTravel];
+        Gout.data(end+1,:)=[Gout.data(end,1:2),ZTravel,0];
     end
     
     if options.verbose==1
